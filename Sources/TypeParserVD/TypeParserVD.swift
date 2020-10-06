@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ParseError: Error {
+public enum ParseError: Error {
     case missingProperty
     case invalidType
 }
