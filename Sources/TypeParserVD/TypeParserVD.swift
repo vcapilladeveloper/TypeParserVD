@@ -14,7 +14,7 @@ enum ParseError: Error {
 
 class TypeParserVD {
     
-    static func getData<T: Codable>(from data: Data) throws -> T? {
+    public static func getData<T: Codable>(from data: Data) throws -> T? {
         let actualError: NSError
         let decoder = JSONDecoder()
         var decodedData: T? = nil
