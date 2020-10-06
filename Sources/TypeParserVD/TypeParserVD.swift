@@ -12,9 +12,9 @@ enum ParseError: Error {
     case invalidType
 }
 
-class TypeParserVD {
+public class TypeParserVD {
     
-    public static func getData<T: Codable>(from data: Data) throws -> T? {
+    static func getData<T: Codable>(from data: Data) throws -> T? {
         let actualError: NSError
         let decoder = JSONDecoder()
         var decodedData: T? = nil
