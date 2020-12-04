@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ParseError: Int {
+public enum ParseError: Int {
     case missingProperty = 4865
     case invalidType = 4864
 }
