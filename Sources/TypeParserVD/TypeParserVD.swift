@@ -7,28 +7,28 @@
 
 import Foundation
 
-enum ParseError: Error {
-    case missingProperty
-    case invalidType
-}
-
 public class TypeParserVD {
     
     public static func getData<T: Codable>(from data: Data) throws -> T? {
-        let actualError: NSError
         let decoder = JSONDecoder()
         var decodedData: T? = nil
         do {
             decodedData = try decoder.decode(T.self, from: data)
+            return decodedData
         } catch {
-            actualError = error as NSError
-            if actualError.code == 4864 {
-                throw ParseError.invalidType
-            } else if actualError.code == 4865 {
-                throw ParseError.missingProperty
-            }
+            throw error
         }
-        return decodedData
+    }
+    
+    public static func getData<T: Codable>(from data: Data) -> Result<T, Error> {
+        let decoder = JSONDecoder()
+        var decodedData: T
+        do {
+            decodedData = try decoder.decode(T.self, from: data)
+            return .success(decodedData)
+        } catch {
+            return .failure(error)
+        }
     }
     
 }
