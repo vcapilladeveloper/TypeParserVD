@@ -16,18 +16,18 @@ public class TypeParserVD {
             decodedData = try decoder.decode(T.self, from: data)
             return decodedData
         } catch {
-            throw error
+            throw error as! DecodingError
         }
     }
     
-    public static func getData<T: Codable>(from data: Data) -> Result<T, Error> {
+    public static func getData<T: Codable>(from data: Data) -> Result<T, DecodingError> {
         let decoder = JSONDecoder()
         var decodedData: T
         do {
             decodedData = try decoder.decode(T.self, from: data)
             return .success(decodedData)
         } catch {
-            return .failure(error)
+            return .failure(error as! DecodingError)
         }
     }
     
